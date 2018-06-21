@@ -1,31 +1,39 @@
 import React from "react";
-import Wrapper from "./components/Wrapper";
-import Title from "./components/Title";
-import FriendCard from "./components/FriendCard";
-import friends from "./friends.json";
+import List from "./components/List";
 
-const App = () => (
-  <Wrapper>
-    <Title>Friends List</Title>
-    <FriendCard
-      name={friends[0].name}
-      image={friends[0].image}
-      occupation={friends[0].occupation}
-      location={friends[0].location}
-    />
-    <FriendCard
-      name={friends[1].name}
-      image={friends[1].image}
-      occupation={friends[1].occupation}
-      location={friends[1].location}
-    />
-    <FriendCard
-      name={friends[2].name}
-      image={friends[2].image}
-      occupation={friends[2].occupation}
-      location={friends[2].location}
-    />
-  </Wrapper>
-);
+const groceries = [
+  {
+    id: 1,
+    name: "Milk",
+    purchased: true
+  },
+  {
+    id: 2,
+    name: "Eggs",
+    purchased: true
+  },
+  {
+    id: 3,
+    name: "Cheese",
+    purchased: false
+  },
+  {
+    id: 4,
+    name: "Cake Mix",
+    purchased: false
+  },
+  {
+    id: 5,
+    name: "Carrots",
+    purchased: false
+  },
+  {
+    id: 6,
+    name: "Juice",
+    purchased: true
+  }
+];
+
+const App = () => <List groceries={groceries} />;
 
 export default App;
