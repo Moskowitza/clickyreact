@@ -1,6 +1,6 @@
 import React from "react";
-import HelloDiv from "./components/HelloDiv";
+import HelloBootstrap from "./components/HelloBootstrap";
 
-const App = () => <HelloDiv />;
+const App = () => <HelloBootstrap />;
 
 export default App;
