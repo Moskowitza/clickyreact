@@ -1,6 +1,14 @@
 import React from "react";
-import HelloBootstrap from "./components/HelloBootstrap";
+import Header from "./components/Header";
+import Section from "./components/Section";
+import Navbar from "./components/Navbar";
 
-const App = () => <HelloBootstrap />;
+const App = () => (
+  <div>
+    <Navbar />
+    <Header />
+    <Section />
+  </div>
+);
 
 export default App;
