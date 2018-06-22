@@ -11,9 +11,6 @@ const LostCard = props => (
         <li>
           <strong>Name:</strong> {props.name}
         </li>
-        <li>
-        <strong>Position:</strong> {props.position}
-        </li>
       </ul>
     </div>
   </div>

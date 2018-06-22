@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LostCard from "./components/LostCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
+import Info from "./components/Info";
 import cards from "./cards.json";
 import "./App.css";
 
@@ -51,7 +52,8 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>Cards List</Title>
+        <Title>Cards List </Title>
+        <Info>Score:{this.state.counter}</Info>
         {this.state.cards.map(card => (
           <LostCard
             handleClick={this.handleClick}
