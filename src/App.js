@@ -11,18 +11,35 @@ class App extends Component {
   state = {
     cards: cards,
     counter: 0,
+    highScore:0
   };
+  
+  
+
   handleClick = (id) => {
   // FIND this.state.cards for card with an id  equal to the id being clicked
     const card = this.state.cards.find(card => card.id === id);
+    //all cards
+    const cards = this.state.cards;
     console.log(card);
     //if isClicked=false
     if(card.isClicked === false){
       this.clickSatus(card);
       this.shuffleCard();
       this.updateCount();
+    }else{
+      this.endGame(cards);
     }
   }
+  endGame= (cards) =>{
+    //reset all cards click to false
+    const freshCard=cards.map(card=>card.isClicked=false)
+    this.setState({
+      cards: freshCard,
+      counter:0
+   })
+  };
+
   clickSatus = (card) =>{
     card.isClicked=true;
     this.setState({
