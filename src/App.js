@@ -6,13 +6,13 @@ import cards from "./cards.json";
 import "./App.css";
 
 class App extends Component {
-  // Setting this.state.friends to the friends json array
+  // Setting this.state.cards to the Lost Charaters json array
   state = {
     cards
   };
 
-  removeFriend = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
+  removeCard = id => {
+    // Filter this.state.cards for friends with an id not equal to the id being removed
     const cards = this.state.cards.filter(card => card.id !== id);
     // Set this.state.friends equal to the new friends array
     this.setState({ cards });
