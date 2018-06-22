@@ -6,27 +6,22 @@ import cards from "./cards.json";
 import "./App.css";
 
 class App extends Component {
-  // Setting this.state.cards to the Lost Charaters json array
+  // Setting this.state.cards to the Lost Charaters cards.json array
   state = {
     cards: cards,
-    click: cards.isClicked,
     counter: 0
   };
-  handleClick= () => {
+  handleClick= (id) => {
+  // FIND this.state.cards for card with an id  equal to the id being clicked
+    const card = this.state.cards.find(card => card.id === id);
     //if isClicked=false
-    //set isClicked = true
-    //call shuffleCard
-    this.clicked();
-    console.log("counter "+this.state.click)
-    this.shuffleCard();
-    this.updateCount();
-    console.log("counter "+this.state.counter)
+    if(card.isClicked == false){
+      card.isCLicked=true;
+      this.shuffleCard();
+      this.updateCount();
+    }
   }
-  clicked=()=>{
-    this.setState({
-      click : true
-    })
-  }
+
 
   updateCount = () =>{
     this.setState({
@@ -56,7 +51,7 @@ class App extends Component {
             id={card.id}
             key={card.id}
             name={card.name}
-            position={card.position}
+            isClicked={card.isClicked}
             image={card.image}
           />
         ))}
