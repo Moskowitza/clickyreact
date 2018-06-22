@@ -9,17 +9,24 @@ class App extends Component {
   // Setting this.state.cards to the Lost Charaters cards.json array
   state = {
     cards: cards,
-    counter: 0
+    counter: 0,
   };
-  handleClick= (id) => {
+  handleClick = (id) => {
   // FIND this.state.cards for card with an id  equal to the id being clicked
     const card = this.state.cards.find(card => card.id === id);
+    console.log(card);
     //if isClicked=false
-    if(card.isClicked == false){
-      card.isCLicked=true;
+    if(card.isClicked === false){
+      this.clickSatus(card);
       this.shuffleCard();
       this.updateCount();
     }
+  }
+  clickSatus = (card) =>{
+    card.isClicked=true;
+    this.setState({
+       cards : cards
+    })
   }
 
 
