@@ -8,24 +8,23 @@ import "./App.css";
 class App extends Component {
   // Setting this.state.cards to the Lost Charaters json array
   state = {
-    cards
+    cards,
+    // counter=0
   };
+  handleClick= () => {
+    //if isClicked=false
+    //set isClicked = true
+    //call shuffleCard
+    this.shuffleCard();
+    //counter +1
 
-  //re assign the position of each card by reversing?
-  // shuffleCard = (i) => {
-  //   const cards = this.state.cards.reverse();
-  //   console.log(cards)
-  //   cards[i] = i;
-  //   console.log(i)
-  //   this.setState({ cards: cards });
-  // }
+  }
   shuffleCard = () => {
     const cards = this.state.cards.sort(
       //Our comparison function
       function (a, b) {
         return 0.5 - Math.random();
       });
-
     this.setState({ cards: cards });
   }
 
@@ -36,7 +35,7 @@ class App extends Component {
         <Title>Cards List</Title>
         {this.state.cards.map(card => (
           <LostCard
-            shuffleCard={this.shuffleCard}
+            handleClick={this.handleClick}
             id={card.id}
             key={card.id}
             name={card.name}
