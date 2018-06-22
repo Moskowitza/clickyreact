@@ -11,52 +11,73 @@ class App extends Component {
   state = {
     cards: cards,
     counter: 0,
-    highScore:0
+    highScore: 1,
+    infoMsg: "Click a Character to Start"
   };
-  
-  
+
 
   handleClick = (id) => {
-  // FIND this.state.cards for card with an id  equal to the id being clicked
+    // FIND this.state.cards for card with an id  equal to the id being clicked
     const card = this.state.cards.find(card => card.id === id);
     //all cards
     const cards = this.state.cards;
     console.log(card);
     //if isClicked=false
-    const score=this.state.counter+1;
-    if(card.isClicked === false){
+
+    if (card.isClicked === false && this.state.counter < 11) {
       this.clickSatus(card);
       this.shuffleCard();
       this.updateCount();
-      this.highScore(score);
+      this.highScore(this.state.counter);
+      this.continue();
+    } else if(card.isClicked === false && this.state.highScore === 11){
+      this.setState({
+        highScore:12,
+        infoMsg: "You WON!! Click a card to start again"
+      })
     }else{
       this.resetGame(cards);
     }
   }
-//reset all cards click to false
-  resetGame = (cards) =>{
-    cards.map(card=>card.isClicked=false)
+
+
+  continue = () => {
     this.setState({
-      cards:cards,
-      counter:0
-   })
+      infoMsg: "Keep Going!"
+    })
+  }
+
+  //reset all cards click to false
+  resetGame = (cards) => {
+    cards.map(card => card.isClicked = false)
+    this.setState({
+      cards: cards,
+      counter: 0,
+    })
+    if (this.state.highScore < 12) {
+      this.setState({
+        infoMsg: "Let's play again!"
+      })
+    }
+
   };
-  highScore=(score)=>{
+  highScore = () => {
+    if (this.state.counter >= this.state.highScore && this.state.highScore < 12) {
+      this.setState({
+        highScore: this.state.highScore + 1
+      })
+    }
+
+  }
+  clickSatus = (card) => {
+    card.isClicked = true;
     this.setState({
-      highScore:score
+      cards: cards
     })
   }
-  clickSatus = (card) =>{
-    card.isClicked=true;
+  updateCount = () => {
     this.setState({
-      cards : cards
-    })
-  }
-
-
-  updateCount = () =>{
-    this.setState({
-       counter : this.state.counter +1
+      counter: this.state.counter + 1
     })
   }
 
@@ -66,8 +87,8 @@ class App extends Component {
       function (a, b) {
         return 0.5 - Math.random();
       });
-    this.setState({ 
-      cards: cards 
+    this.setState({
+      cards: cards
     });
   }
 
@@ -75,10 +96,11 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>Cards List </Title>
+        <Title>A Lost Memory Game</Title>
         <Info>
           <p>Score:{this.state.counter}</p>
           <p>High Score:{this.state.highScore}</p>
+          <p>Info:{this.state.infoMsg}</p>
         </Info>
         {this.state.cards.map(card => (
           <LostCard
@@ -96,29 +118,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-  // removeCard = id => {
-  //   // Filter this.state.cards for LostCharacters with an id not equal to the id being removed
-  //   const cards = this.state.cards.filter(card => card.id !== id);
-  //   // Set this.state.friends equal to the new friends array
-  //   this.setState({ cards });
-  // };
-//  shuffleCard=(array) =>{
-  //   let currentIndex = array.length, temporaryValue, randomIndex;
-
-  //   // While there remain elements to shuffle...
-  //   while (0 !== currentIndex) {
-
-  //     // Pick a remaining element...
-  //     randomIndex = Math.floor(Math.random() * currentIndex);
-  //     currentIndex -= 1;
-
-  //     // And swap it with the current element.
-  //     temporaryValue = array[currentIndex];
-  //     array[currentIndex] = array[randomIndex];
-  //     array[randomIndex] = temporaryValue;
-  //   }
-
-  //   return array;
-  // }
