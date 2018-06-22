@@ -23,27 +23,33 @@ class App extends Component {
     const cards = this.state.cards;
     console.log(card);
     //if isClicked=false
+    const score=this.state.counter+1;
     if(card.isClicked === false){
       this.clickSatus(card);
       this.shuffleCard();
       this.updateCount();
+      this.highScore(score);
     }else{
-      this.endGame(cards);
+      this.resetGame(cards);
     }
   }
-  endGame= (cards) =>{
-    //reset all cards click to false
-    const freshCard=cards.map(card=>card.isClicked=false)
+//reset all cards click to false
+  resetGame = (cards) =>{
+    cards.map(card=>card.isClicked=false)
     this.setState({
-      cards: freshCard,
+      cards:cards,
       counter:0
    })
   };
-
+  highScore=(score)=>{
+    this.setState({
+      highScore:score
+    })
+  }
   clickSatus = (card) =>{
     card.isClicked=true;
     this.setState({
-       cards : cards
+      cards : cards
     })
   }
 
@@ -70,7 +76,10 @@ class App extends Component {
     return (
       <Wrapper>
         <Title>Cards List </Title>
-        <Info>Score:{this.state.counter}</Info>
+        <Info>
+          <p>Score:{this.state.counter}</p>
+          <p>High Score:{this.state.highScore}</p>
+        </Info>
         {this.state.cards.map(card => (
           <LostCard
             handleClick={this.handleClick}
