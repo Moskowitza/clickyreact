@@ -8,17 +8,26 @@ import "./App.css";
 class App extends Component {
   // Setting this.state.cards to the Lost Charaters json array
   state = {
-    cards:cards,
+    cards: cards,
+    click: cards.isClicked,
     counter: 0
   };
   handleClick= () => {
     //if isClicked=false
     //set isClicked = true
     //call shuffleCard
+    this.clicked();
+    console.log("counter "+this.state.click)
     this.shuffleCard();
     this.updateCount();
     console.log("counter "+this.state.counter)
   }
+  clicked=()=>{
+    this.setState({
+      click : true
+    })
+  }
+
   updateCount = () =>{
     this.setState({
        counter : this.state.counter +1

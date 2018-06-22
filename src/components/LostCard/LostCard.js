@@ -4,7 +4,7 @@ import "./LostCard.css";
 const LostCard = props => (
   <div className="card">
     <div className="img-container">
-      <img alt={props.name} src={props.image} />
+      <img alt={props.name} src={props.image} onClick={() => props.handleClick(props)} />
     </div>
     <div className="content">
       <ul>
@@ -16,9 +16,6 @@ const LostCard = props => (
         </li>
       </ul>
     </div>
-    <span onClick={() => props.handleClick(props)} className="remove">
-      𝘅
-    </span>
   </div>
 );
 
