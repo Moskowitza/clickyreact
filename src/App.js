@@ -12,7 +12,7 @@ class App extends Component {
   };
 
   removeCard = id => {
-    // Filter this.state.cards for friends with an id not equal to the id being removed
+    // Filter this.state.cards for LostCharacters with an id not equal to the id being removed
     const cards = this.state.cards.filter(card => card.id !== id);
     // Set this.state.friends equal to the new friends array
     this.setState({ cards });
@@ -24,14 +24,12 @@ class App extends Component {
       <Wrapper>
         <Title>Cards List</Title>
         {this.state.cards.map(card => (
-          <FriendCard
-            removeFriend={this.removeFriend}
-            id={friend.id}
-            key={friend.id}
-            name={friend.name}
-            image={friend.image}
-            occupation={friend.occupation}
-            location={friend.location}
+          <LostCard
+            removeFriend={this.removeCard}
+            id={card.id}
+            key={card.id}
+            name={card.name}
+            image={card.image}
           />
         ))}
       </Wrapper>
