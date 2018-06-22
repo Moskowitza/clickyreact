@@ -11,9 +11,12 @@ const LostCard = props => (
         <li>
           <strong>Name:</strong> {props.name}
         </li>
+        <li>
+        <strong>Position:</strong> {props.position}
+        </li>
       </ul>
     </div>
-    <span onClick={() => props.shuffleCard(props.position)} className="remove">
+    <span onClick={() => props.shuffleCard(props)} className="remove">
       𝘅
     </span>
   </div>
