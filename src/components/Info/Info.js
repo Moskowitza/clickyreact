@@ -1,7 +1,7 @@
 import React from "react";
-import "./Title.css";
+import "./Info.css";
 
-const Info = props => <div><h1 className="info">{props.children}</h1>          
+const Info = props => <div className="info">{props.children}       
     </div>;
 
-export default Title;
+export default Info;
